@@ -1,9 +1,0 @@
-node_modules
-.git
-.replit
-.upm
-npm-debug.log
-**/node_modules/**
-.env.local
-.env.development.local
-.cache
