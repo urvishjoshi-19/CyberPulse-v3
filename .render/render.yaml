@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: cyberpulse-v3
+    env: docker
+    plan: free
+    region: oregon
+    branch: main
+    dockerfilePath: Dockerfile
+    buildCommand: ""
+    startCommand: ""
+    autoDeploy: true
