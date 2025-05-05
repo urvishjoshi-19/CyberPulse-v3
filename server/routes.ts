@@ -10,8 +10,8 @@ import { log } from "./vite";
 // Helper function to run the Python scraper
 function runScraper(): Promise<string> {
   return new Promise((resolve, reject) => {
-    const scraperPath = path.join(import.meta.dirname, 'scraper.py');
-    exec(`python3 ${scraperPath}`, (error, stdout, stderr) => {
+    const scraperPath = path.resolve("server", "scraper.py");
+    exec(`python ${scraperPath}`, (error, stdout, stderr) => {
       if (error) {
         log(`Scraper error: ${error.message}`, 'scraper');
         return reject(error);

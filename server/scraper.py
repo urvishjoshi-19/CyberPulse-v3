@@ -5,6 +5,7 @@ import json
 import re
 from datetime import datetime
 import sys
+import requests
 
 def scrape_hacker_news():
     try:
@@ -117,6 +118,8 @@ def scrape_hacker_news():
     except Exception as e:
         print(f"Error scraping Hacker News: {e}", file=sys.stderr)
         return json.dumps([])
+    
+
 
 if __name__ == "__main__":
     result = scrape_hacker_news()
