@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: cyberpulse
+    env: node
+    plan: free
+    buildCommand: |
+      npm install
+      npx update-browserslist-db@latest
+      pip install -r server/requirements.txt
+    startCommand: tsx server/index.ts
