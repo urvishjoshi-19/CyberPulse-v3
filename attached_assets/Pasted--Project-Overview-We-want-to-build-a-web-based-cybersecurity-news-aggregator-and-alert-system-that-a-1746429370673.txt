@@ -1,0 +1,132 @@
+ Project Overview
+We want to build a web-based cybersecurity news aggregator and alert system that automatically scrapes the latest news from TheHackerNews, parses it into structured JSON format, and allows users to receive real-time alerts when news articles match specific cyber threat keywords. The data will also be displayed on a clean, modern frontend dashboard.
+
+🔧 Core Features (End-to-End)
+1. News Scraper Backend
+Scrape latest articles from the Hacker News homepage.
+
+Extract the following per article:
+
+title (string)
+
+summary or description (string)
+
+url to full article (string)
+
+date of publication (string)
+
+tags or categories (list of strings)
+
+image_url (optional thumbnail image link)
+
+Return all news articles in a structured JSON array.
+
+✳️ Use Python 3 + BeautifulSoup4 or Selenium.
+✳️ Avoid scraping ads or irrelevant blocks.
+✳️ Ensure duplicate news is not returned if script is run repeatedly.
+
+2. Data Cleaning + JSON Construction
+After scraping, format each article into a dictionary like:
+
+json
+Copy
+Edit
+{
+  "title": "Malicious Go Modules Deliver Disk-Wiping Linux Malware...",
+  "summary": "Cybersecurity researchers have discovered three malicious Go modules...",
+  "url": "https://thehackernews.com/...",
+  "date": "2025-05-03",
+  "tags": ["Malware", "Supply Chain Attack"],
+  "image_url": "https://cdn.example.com/image.jpg"
+}
+Return this as a list in JSON format (JSON array).
+
+3. Real-Time Alert System
+Maintain a customizable list of threat keywords, e.g.:
+
+python
+Copy
+Edit
+["zero-day", "ransomware", "CVE", "phishing", "APT", "DDoS"]
+When the script runs:
+
+Scan the title and summary of each article.
+
+If any keyword is found (case-insensitive), flag the article with:
+
+json
+Copy
+Edit
+"alert": true,
+"matched_keywords": ["ransomware", "CVE"]
+Send an email alert or browser push notification if:
+
+alert == true for any article
+
+Use smtplib or SendGrid for email delivery.
+
+4. Local API (Backend Endpoint)
+Build an API endpoint to serve the scraped JSON data.
+
+Use Flask or FastAPI to expose this endpoint:
+
+GET /api/news → returns full list of news as JSON
+
+GET /api/alerts → returns only articles with alert == true
+
+Add basic rate limiting and CORS if public
+
+5. Frontend Dashboard (Optional but Preferred)
+Build a simple web UI to:
+
+Feature	Details
+📰 Live Feed	Shows latest headlines, summaries, tags, and publish date.
+🔍 Filter by Tag or Keyword	Users can filter for "Malware", "Phishing", etc.
+🔔 Highlight Alerts	Articles with alert == true should appear with red border or bell icon.
+🧾 Article Detail View	Clicking a headline expands full summary and "Read More" link.
+
+✳️ Use React.js (with Tailwind or Bootstrap for UI)
+✳️ Call /api/news for data and render it dynamically
+✳️ Use color coding or icons to flag alerts
+
+6. (Optional) Add Weekly Digest Feature
+Automatically send a weekly email summary of top 5-10 articles.
+
+Include article title, summary, date, and link.
+
+Use a simple scheduler (schedule, cron, or Celery + Redis if complex)
+
+🧱 Tech Stack Guidelines
+Layer	Tech
+Scraper	Python 3, BeautifulSoup4 or Selenium
+JSON Handling	Built-in json module
+API Backend	Flask or FastAPI
+Alert Email	Python smtplib, or SendGrid/Mailgun
+Frontend	React.js (optional: Tailwind CSS or Bootstrap)
+Hosting (optional)	Render, Heroku, or any server with Python support
+Database (optional)	SQLite or MongoDB to store history
+
+🚀 Deliverables
+✅ Python script for scraping and generating JSON
+
+✅ Keyword-based alert detection system
+
+✅ API that returns latest scraped data in JSON
+
+✅ Working frontend dashboard (if included)
+
+✅ Email alert system (with SMTP config)
+
+✅ Documentation or README with:
+
+How to install/run the script
+
+How to configure keyword list and SMTP
+
+JSON structure format
+
+API endpoint guide
+
+
+
+make a inter
