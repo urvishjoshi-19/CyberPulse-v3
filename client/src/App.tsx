@@ -8,6 +8,7 @@ import Alerts from "@/pages/Alerts";
 import Settings from "@/pages/Settings";
 import Sidebar from "@/components/Sidebar";
 import { useEffect, useState } from "react";
+import { ThemeProvider } from "./lib/ThemeProvider";
 
 function Router() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -35,11 +36,13 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Router />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Router />
+        </TooltipProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
 
