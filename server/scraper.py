@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
-import requests
+
+try:
+    import requests
+except ImportError:
+    import os
+    os.system("pip3 install requests")
+    import requests
+
 from bs4 import BeautifulSoup
 import json
 import re
 from datetime import datetime
 import sys
-import requests
 
 def scrape_hacker_news():
     try:

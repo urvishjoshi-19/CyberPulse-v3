@@ -18,5 +18,7 @@ RUN npm install
 # Expose the port
 EXPOSE 5000
 
+RUN python3 -c "import requests; print('✅ Python requests is installed')"
+
 # Start the app
 CMD ["npx", "tsx", "server/index.ts"]
